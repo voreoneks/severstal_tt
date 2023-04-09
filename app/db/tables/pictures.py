@@ -13,5 +13,5 @@ pictures_table = Table(
     metadata,
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("size", Integer, nullable=False),
-    Column("created_at", TIMESTAMP(), nullable=False)
+    Column("created_at", TIMESTAMP(), nullable=False),
 )

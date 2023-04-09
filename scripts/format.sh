@@ -2,7 +2,7 @@
 set -x
 
 isort app/
-isort tests/
+# isort tests/
 
 black app/
-black tests/
+# black tests/

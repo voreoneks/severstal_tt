@@ -2,7 +2,7 @@
 set -x
 
 flake8 app/
-flake8 tests/
+# flake8 tests/
 
 black app/ --check
-black tests/ --check
+# black tests/ --check

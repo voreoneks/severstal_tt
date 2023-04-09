@@ -8,5 +8,11 @@ class PicturesRepository(BaseRepository):
     table = pictures_table
 
     async def create(self, data: model):
-        q = self.table.insert().values(**data.dict())
-        await self.session.execute(q)
+        async with self.session.begin() as session:
+            q = self.table.insert().values(**data.dict())
+            await session.execute(q)
+
+    async def delete_all(self):
+        async with self.session.begin() as session:
+            q = self.table.delete()
+            await session.execute(q)

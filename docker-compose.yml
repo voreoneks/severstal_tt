@@ -16,7 +16,19 @@ services:
     env_file:
       - ./.env
     ports:
-      - '${POSTGRES_PORT}:${POSTGRES_PORT}'
+      - '5432:5432'
     volumes:
       - /var/lib/postgresql/db:/data/postgres
     restart: always
+  app:
+    build: ./
+    container_name: app
+    restart: always
+    command: >
+        sh -c "alembic upgrade head &&
+               python3 main.py"
+    env_file:
+      - ./.env
+    depends_on:
+      - queue
+      - db
