@@ -7,8 +7,8 @@ services:
     env_file:
       - ./.env
     ports:
-      - '6379:6379'
-    command: --loglevel warning --requirepass ${REDIS_PASS}
+      - '${REDIS_PORT}:${REDIS_PORT}'
+    command: redis-server --loglevel warning --requirepass ${REDIS_PASS}
   db:
     image: postgres
     environment:
@@ -20,3 +20,18 @@ services:
     volumes:
       - /var/lib/postgresql/db:/data/postgres
     restart: always
+  # app:
+  #   build: ./
+  #   container_name: app
+  #   volumes:
+  #     - type: bind
+  #       source: /var/lib/app/pictures
+  #       target: /data/app/pictures
+  #   command: >
+  #       sh -c "alembic upgrade head &&
+  #              python3 main.py"
+  #   env_file:
+  #     - ./.env
+  #   depends_on:
+  #     - queue
+  #     - db

@@ -1,10 +1,8 @@
 #!/bin/sh -e
 set -x
 
-isort cli.py
 isort app/
-isort tests/
+# isort tests/
 
-black cli.py
 black app/
-black tests/
+# black tests/

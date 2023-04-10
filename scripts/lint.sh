@@ -1,8 +1,8 @@
 #!/bin/sh -e
 set -x
 
-flake8 cli.py
 flake8 app/
+# flake8 tests/
 
-black cli.py --check
 black app/ --check
+# black tests/ --check
